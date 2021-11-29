@@ -3,39 +3,40 @@ using System.Collections.Generic;
 
 namespace estdados1211
 {
-    class Program
+    public class Program
     {
-        public static string PALAVRA;
+        public static int menu = 0;
+        public static List<string> palavras = new List<string>();
         public static int QUANT = 0;
         static List<string> letras = new List<string>();
-        public static void INICIAR()
+        public static void MENU()
         {
+            //menu
+            Console.WriteLine("digite 1 para inserir palavra");
+            Console.WriteLine("digite 2 para jogar");
+            Console.WriteLine("digite 3 para ver maior pontuação");
+            Console.WriteLine("digite 4 para conhecer a desenvolvedora do jogo");
+            Console.WriteLine("digite 9 para sair do jogo");
+            menu = int.Parse(Console.ReadLine());
+        }
+        public static void OP1()
+        {
+            Console.Clear();
             Console.WriteLine("DIGITE A QUANTIDADE DE LETRAS QUE VOCÊ IRÁ UTILIZAR NA FORCA.");
             QUANT = int.Parse(Console.ReadLine());
 
             Console.WriteLine("DIGITE A PALAVRA PARA UTILIZAR NA FORCA");
-            PALAVRA = Console.ReadLine();
+            palavras.Add(Console.ReadLine());
+            
         }
-        public static void FORCA()
+        public static void OP2()
         {
-            Console.WriteLine("_________");
-            Console.WriteLine("|       |");
-            Console.WriteLine("|");
-            Console.WriteLine("|");
-            Console.WriteLine("|");
-            Console.WriteLine("|");
-            for (int i = 0; i < QUANT; i++)
-            {
-                Console.Write(" ___ ");
-            }
-        }
-        public static void VALIDAR()
-        {
-            Console.WriteLine("DIGITE UMA LETRA");
+            Console.WriteLine("digite uma letra");
             string letra = Console.ReadLine();
             for (int i = 0; i < QUANT; i++)
             {
-                letras.Add(PALAVRA.Substring(i, 1));
+                for (int j = 0; j < palavras.Count; j++)
+                    letras.Add(palavras[j].Substring(i, 1));
             }
             foreach (string c in letras)
             {
@@ -57,13 +58,48 @@ namespace estdados1211
                     Console.Write($" {c} ");
                 }
             }
-            static void Main(string[] args)
+
+        }
+        public static void FORCA()
+        {
+            Console.WriteLine("_________");
+            Console.WriteLine("|       |");
+            Console.WriteLine("|");
+            Console.WriteLine("|");
+            Console.WriteLine("|");
+            Console.WriteLine("|");
+            for (int i = 0; i < QUANT; i++)
             {
-                INICIAR();
-                FORCA();
-
-
+                Console.Write(" ___ ");
             }
         }
+        
+
+         static void Main(string[] args)
+         {
+            bool m = true;
+            
+            while (m) {
+                MENU();
+                switch (menu)
+                {
+                    case 1: OP1();
+                            break;
+                        
+                    case 2: OP2();
+                            break;
+                        
+                    //case 3 OP3();
+                    //    break;
+                    //case 4: OP4();
+                    //    break;
+                    case 9: return;
+
+
+                }
+                    }
+
+         }
+        }
     }
-}
+
